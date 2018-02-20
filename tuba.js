@@ -1,6 +1,6 @@
 /*
- *    JavaScript Chapter 4
- *     Tuba Farm Equipment
+ *    Hands-on Project 4.1
+ *    Tuba Farm Equipment
  *    Variables and functions
  *
  *    Author: Lucas Eastman
@@ -10,9 +10,9 @@
  */
 
 /* global variables tracking status of each form section */
-var acresComplete = true;
-var cropsComplete = true;
-var monthsComplete = true;
+var acresComplete = false;
+var cropsComplete = false;
+var monthsComplete = false;
 var fuelComplete = true;
 
 /* global variables referencing sidebar h2 and p elements */
@@ -52,7 +52,23 @@ function verifyAcres() {
 
 /* verify at least one crops checkbox is checked */
 function verifyCrops() {
-    testFormCompleteness();
+  // Try to check if there isn't a checked box and throw an error and catch it
+  // and send a message to the user if there isn't any checked boxes in the crops
+  // sections
+  try{ for (var i = 0; i < 7; i++) {
+  if
+  (cropsFieldset.getElementsByTagName("input")[i]. checked) { cropscomplete = true; messageElement.innerHTML = ""; // clear previous
+  message or recommendation
+  testFormCompleteness(); i=8;
+  } if (i === 7) {
+  throw "Please select at least one crop.";
+  }
+  }
+  catch(message) {
+  cropsComplete = false; messageHeadElement.innerHTML = "";
+  // remove any former recommendation heading messageElement.innerHTML = message; // display error
+  Message
+  }
 }
 
 /* verify months text box entry is between 1 and 12 */
@@ -60,6 +76,7 @@ function verifyMonths() {
     // testFormCompleteness();
     var validity = true;
     var messageText = "";
+
     try {
       if(!(monthsBox.value >= 1 && monthsBox.value <= 12)) {
         throw "Please enter a number of months between 1 and 12.";
